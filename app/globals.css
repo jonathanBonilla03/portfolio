@@ -1,0 +1,191 @@
+@import "tailwindcss";
+
+/* Theme: light by default, dark when the OS prefers it, and either one when
+   the visitor picks it with the toggle (stored as data-theme on <html>). */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root {
+  --bg: #fafaf7;
+  --surface: #ffffff;
+  --surface-muted: #f3f3ef;
+  --border: #e4e4de;
+  --border-strong: #cfcfc7;
+  --grid: #ecece6;
+  --text: #1c1f23;
+  --text-muted: #5b6168;
+  --accent: #0f6e6e;
+  --accent-hover: #0b5858;
+  --accent-soft: #e6f2f1;
+  --accent-contrast: #ffffff;
+  --positive: #1f7a4d;
+  --negative: #b4432f;
+  --code-keyword: #0f6e6e;
+  --code-string: #8a5a00;
+  --code-comment: #7d838a;
+  --code-number: #7b3fa0;
+  --chart-1: #2c6bd6;
+  --chart-2: #c2641a;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1214;
+    --surface: #161a1d;
+    --surface-muted: #1c2125;
+    --border: #272c31;
+    --border-strong: #3a4148;
+    --grid: #1e2327;
+    --text: #e8eaec;
+    --text-muted: #9aa1a8;
+    --accent: #3fb8ae;
+    --accent-hover: #5ccbc1;
+    --accent-soft: #12302e;
+    --accent-contrast: #06201e;
+    --positive: #4fc488;
+    --negative: #f08a74;
+    --code-keyword: #5ccbc1;
+    --code-string: #e2b65c;
+    --code-comment: #7f8890;
+    --code-number: #c49bf0;
+    --chart-1: #4a86e8;
+    --chart-2: #cf7a2c;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0f1214;
+  --surface: #161a1d;
+  --surface-muted: #1c2125;
+  --border: #272c31;
+  --border-strong: #3a4148;
+  --grid: #1e2327;
+  --text: #e8eaec;
+  --text-muted: #9aa1a8;
+  --accent: #3fb8ae;
+  --accent-hover: #5ccbc1;
+  --accent-soft: #12302e;
+  --accent-contrast: #06201e;
+  --positive: #4fc488;
+  --negative: #f08a74;
+  --code-keyword: #5ccbc1;
+  --code-string: #e2b65c;
+  --code-comment: #7f8890;
+  --code-number: #c49bf0;
+  --chart-1: #4a86e8;
+  --chart-2: #cf7a2c;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-grid: var(--grid);
+  --color-text: var(--text);
+  --color-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-contrast: var(--accent-contrast);
+  --color-positive: var(--positive);
+  --color-negative: var(--negative);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Chart-paper grid used behind the hero. */
+.grid-paper {
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
+}
+
+/* One-time fade-up when a section scrolls into view. */
+.reveal {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 300ms ease-out,
+    transform 300ms ease-out;
+}
+.reveal[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+.no-js .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* Syntax colors for code blocks */
+.code-block .tok-keyword {
+  color: var(--code-keyword);
+  font-weight: 500;
+}
+.code-block .tok-string {
+  color: var(--code-string);
+}
+.code-block .tok-comment {
+  color: var(--code-comment);
+  font-style: italic;
+}
+.code-block .tok-number {
+  color: var(--code-number);
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
