@@ -559,7 +559,13 @@ export const projects: Project[] = [
     type: "Business systems project",
     stack: ["Next.js", "TypeScript", "Tailwind", "REST APIs", "AI integration", "Resend", "Calendly", "Vercel"],
     focus: "Business process design and systems integration",
-    coverDiagram: "bonaro-architecture",
+    cover: {
+      src: "/images/projects/bonaro/cover.webp",
+      alt: "Bonaro Tech homepage with the AI assistant chat panel open.",
+      width: 1821,
+      height: 1138,
+    },
+    links: [{ label: "Live site", href: "https://bonarotech.com" }],
     sections: [
       {
         id: "overview",
@@ -608,8 +614,26 @@ export const projects: Project[] = [
             ],
           },
           {
-            type: "placeholder",
-            text: "Add 1–2 screenshots of the lead form, chat, or booking flow to /public/images/projects/bonaro/.",
+            type: "figure",
+            image: {
+              src: "/images/projects/bonaro/home-chat.webp",
+              alt: "Bonaro Tech homepage with the Bonaro Assistant chat open, answering a visitor's question about what the company does.",
+              width: 1821,
+              height: 1554,
+            },
+            caption:
+              "The AI assistant on the live site answers a visitor's question in context, so a lead gets a response before anyone on the team sees it.",
+          },
+          {
+            type: "figure",
+            image: {
+              src: "/images/projects/bonaro/lead-form.webp",
+              alt: "Bonaro Tech lead form asking for name, email, phone, business name, service of interest, and a description of the business.",
+              width: 1825,
+              height: 1415,
+            },
+            caption:
+              "The lead form captures the fields the follow-up needs (business, service, and the customer's own description) instead of a bare name and email.",
           },
         ],
       },
@@ -623,6 +647,16 @@ export const projects: Project[] = [
               "Reliable data routing. Every form submission and booking had to reach the right place, and failures had to be visible rather than silent.",
               "Designing for non-technical owners. The system had to work without the business owner touching any code.",
             ],
+          },
+        ],
+      },
+      {
+        id: "result",
+        heading: "Result",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "The system is live at bonarotech.com. A visitor gets an immediate answer from the assistant, and every form submission arrives with the business, the service they need, and their own description of the problem, so follow-up can start without a back-and-forth.",
           },
         ],
       },
