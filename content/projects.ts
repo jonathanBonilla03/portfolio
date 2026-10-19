@@ -51,6 +51,11 @@ export const projects: Project[] = [
     stack: ["PostgreSQL", "Supabase", "SQL", "Row-level security", "React", "Python"],
     focus: "Data migration, relational modeling, pricing and availability logic, data quality",
     featured: true,
+    highlights: [
+      { value: "13,340", label: "product records migrated from Excel" },
+      { value: "3,355 → 492", label: "kits shown as available, corrected after the audit" },
+      { value: "343 → 1,977", label: "in-stock products restored to the catalog" },
+    ],
     cover: {
       src: "/images/projects/makmex/before-after.webp",
       alt: "SQL query comparing kits shown as available before and after the fix, by warehouse: CDMX 3,031 to 76, CEDIS 3,351 to 435, DENMOR 3,341 to 148.",
@@ -428,6 +433,11 @@ export const projects: Project[] = [
     stack: ["Python", "pandas", "scikit-learn", "matplotlib"],
     focus: "Demand prediction and revenue-versus-margin tradeoffs",
     coverChart: "pricing-scenarios",
+    highlights: [
+      { value: "~82%", label: "lower prediction error than the baseline" },
+      { value: "0.967", label: "R² on the holdout test set" },
+      { value: "30%", label: "discount where predicted margin turns negative" },
+    ],
     links: [{ label: "Code on GitHub", href: "https://github.com/jonathanBonilla03/pricing-ml-optimization" }],
     sections: [
       {
@@ -437,6 +447,12 @@ export const projects: Project[] = [
           {
             type: "paragraph",
             text: "An end-to-end Python machine learning pipeline. It predicts product demand from pricing and operational signals, then simulates discount scenarios to estimate their effect on revenue and margin.",
+          },
+          {
+            type: "chart",
+            chart: "pricing-scenarios",
+            caption:
+              "The key result: simulated discounts for one product (SKU-06252). Revenue barely moves, but margin falls with every step and turns negative at 30%.",
           },
         ],
       },
@@ -497,14 +513,8 @@ export const projects: Project[] = [
             text: "The random forest cut prediction error by about 82% compared with the baseline. Final price accounted for about 84% of feature importance and month (seasonality) for about 12%; brand and category mattered little.",
           },
           {
-            type: "chart",
-            chart: "pricing-scenarios",
-            caption:
-              "Simulated discounts for one product (SKU-06252). Revenue barely moves, but margin falls with every step and turns negative at 30%.",
-          },
-          {
             type: "paragraph",
-            text: "For this product, a 5% discount slightly increased predicted revenue, but margin fell from about $7,036 to $6,127. Keeping the original price was the better choice for profit.",
+            text: "In the simulation (Fig. 1), a 5% discount slightly increased predicted revenue for the sample product, but margin fell from about $7,036 to $6,127. Keeping the original price was the better choice for profit.",
           },
         ],
       },

@@ -1,4 +1,4 @@
-import { CalendarCheck, Briefcase, Languages, MapPin, type LucideIcon } from "lucide-react";
+import { Briefcase, Languages, MapPin, type LucideIcon } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { ButtonLink } from "@/components/ui/Button";
 import { site } from "@/content/site";
@@ -6,7 +6,6 @@ import { site } from "@/content/site";
 const icons: Record<(typeof site.quickScan)[number]["icon"], LucideIcon> = {
   location: MapPin,
   work: Briefcase,
-  calendar: CalendarCheck,
   language: Languages,
 };
 

@@ -55,6 +55,8 @@ export type Project = {
   /** What the project demonstrates, shown on cards. */
   focus: string;
   featured?: boolean;
+  /** Headline numbers shown on the card and at the top of the case study. */
+  highlights?: { value: string; label: string }[];
   cover?: ImageAsset & { frame?: "dark" | "light" };
   /** Shown on the card when there is no screenshot. */
   coverDiagram?: DiagramId;

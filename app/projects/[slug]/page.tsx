@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { ContentBlocks, numberFigures } from "@/components/project/ContentBlocks";
+import { Highlights } from "@/components/project/Highlights";
 import { TableOfContents } from "@/components/project/TableOfContents";
 import { ChipList } from "@/components/ui/Chip";
 import { TextLink } from "@/components/ui/TextLink";
@@ -70,7 +71,11 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
           <p className="mt-4 text-lg leading-8 text-muted">{project.summary}</p>
         </header>
 
-        <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-[10px] border border-border bg-border lg:grid-cols-4">
+        <dl
+          className={`mt-10 grid gap-px overflow-hidden rounded-[10px] border border-border bg-border ${
+            meta.length === 4 ? "grid-cols-2 lg:grid-cols-4" : "grid-cols-1 sm:grid-cols-3"
+          }`}
+        >
           {meta.map((item) => (
             <div key={item.label} className="bg-surface p-4">
               <dt className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted">{item.label}</dt>
@@ -78,6 +83,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
             </div>
           ))}
         </dl>
+        {project.highlights?.length ? <Highlights items={project.highlights} size="lg" className="mt-4" /> : null}
         <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <ChipList items={project.stack} />
           {project.links?.length ? (

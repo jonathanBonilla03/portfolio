@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { bonaroSteps, fireEmsSteps } from "@/components/diagrams/FlowDiagram";
 import { ChipList } from "@/components/ui/Chip";
+import { Highlights } from "./Highlights";
 import type { Project } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -62,7 +63,7 @@ export function CardCover({ project, priority, sizes }: { project: Project; prio
         height={project.cover.height}
         sizes={sizes}
         priority={priority}
-        className="h-full w-full object-cover object-top"
+        className="h-full w-full object-cover object-left-top"
       />
     );
   }
@@ -72,44 +73,87 @@ export function CardCover({ project, priority, sizes }: { project: Project; prio
   return null;
 }
 
-export function ProjectCard({ project, featured = false }: { project: Project; featured?: boolean }) {
+const cardLink =
+  "after:absolute after:inset-0 after:rounded-[10px] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-accent";
+
+const cardHover =
+  "group relative overflow-hidden rounded-[10px] border bg-surface transition duration-150 ease-out hover:-translate-y-0.5 hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] motion-reduce:hover:translate-y-0";
+
+function CaseStudyCta() {
+  return (
+    <p className="inline-flex items-center gap-1 text-[15px] font-medium text-accent">
+      View case study
+      <ArrowRight aria-hidden className="size-4 transition-transform duration-150 group-hover:translate-x-0.5" />
+    </p>
+  );
+}
+
+/** The flagship project: wider, larger type, with its headline numbers visible. */
+export function FeaturedProjectCard({ project }: { project: Project }) {
   const href = `/projects/${project.slug}`;
   return (
-    <article
-      className={cn(
-        "group relative flex flex-col overflow-hidden rounded-[10px] border border-border bg-surface transition duration-150 ease-out hover:-translate-y-0.5 hover:border-border-strong hover:shadow-[0_6px_20px_-12px_rgba(0,0,0,0.25)] motion-reduce:hover:translate-y-0",
-        featured && "lg:flex-row",
-      )}
-    >
-      <div
-        className={cn(
-          "relative aspect-[16/10] overflow-hidden border-b border-border bg-surface-muted",
-          featured && "lg:aspect-auto lg:w-[58%] lg:border-r lg:border-b-0",
-        )}
-      >
-        <CardCover
-          project={project}
-          priority={featured}
-          sizes={featured ? "(min-width: 1024px) 640px, 100vw" : "(min-width: 768px) 560px, 100vw"}
-        />
+    <article className={cn(cardHover, "border-border-strong hover:border-accent")}>
+      <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]">
+        <div className="flex flex-col gap-3 p-6 md:p-8 lg:order-1">
+          <p className="font-mono text-xs font-medium uppercase tracking-[0.08em] text-accent">Flagship project</p>
+          <p className="font-mono text-xs font-medium uppercase tracking-[0.08em] text-muted">{project.label}</p>
+          <h3 className="text-[28px] font-semibold leading-9 tracking-[-0.015em] text-text">
+            <Link href={href} className={cardLink}>
+              {project.title}
+            </Link>
+          </h3>
+          <p className="text-[17px] leading-7 text-muted">{project.summary}</p>
+          <p className="text-sm text-muted">
+            <span className="text-text">{project.role}</span>
+            {project.team ? ` · ${project.team}` : null}
+          </p>
+          <ChipList items={project.stack.slice(0, 6)} className="mt-1" />
+          <div className="mt-auto pt-3">
+            <CaseStudyCta />
+          </div>
+        </div>
+        <div className="relative aspect-[16/10] overflow-hidden border-t border-border bg-surface-muted lg:order-2 lg:aspect-auto lg:min-h-[340px] lg:border-l lg:border-t-0">
+          <CardCover project={project} priority sizes="(min-width: 1024px) 620px, 100vw" />
+        </div>
       </div>
-      <div className={cn("flex flex-1 flex-col gap-3 p-6", featured && "lg:justify-center lg:p-8")}>
+      {project.highlights?.length ? (
+        <div className="border-t border-border bg-surface-muted p-4 md:p-6">
+          <Highlights items={project.highlights} size="lg" />
+        </div>
+      ) : null}
+    </article>
+  );
+}
+
+export function ProjectCard({ project }: { project: Project }) {
+  const href = `/projects/${project.slug}`;
+  const stat = project.highlights?.[0];
+  return (
+    <article className={cn(cardHover, "flex flex-col border-border hover:border-border-strong")}>
+      <div className="relative aspect-[16/10] overflow-hidden border-b border-border bg-surface-muted">
+        <CardCover project={project} sizes="(min-width: 1024px) 380px, (min-width: 768px) 50vw, 100vw" />
+      </div>
+      <div className="flex flex-1 flex-col gap-3 p-6">
         <p className="font-mono text-xs font-medium uppercase tracking-[0.08em] text-muted">{project.label}</p>
-        <h3 className={cn("font-semibold leading-7 tracking-[-0.01em] text-text", featured ? "text-2xl leading-8" : "text-xl")}>
-          <Link href={href} className="after:absolute after:inset-0 focus-visible:outline-none after:rounded-[10px] focus-visible:after:outline-2 focus-visible:after:outline-accent">
+        <h3 className="text-xl font-semibold leading-7 tracking-[-0.01em] text-text">
+          <Link href={href} className={cardLink}>
             {project.title}
           </Link>
         </h3>
         <p className="text-[15px] leading-6 text-muted">{project.summary}</p>
+        {stat ? (
+          <p className="text-sm leading-5 text-muted">
+            <span className="font-mono text-base font-semibold text-accent">{stat.value}</span> {stat.label}
+          </p>
+        ) : null}
         <p className="text-sm text-muted">
           <span className="text-text">{project.role}</span>
           {project.team ? ` · ${project.team}` : null}
         </p>
-        <ChipList items={project.stack.slice(0, featured ? 6 : 5)} className="mt-1" />
-        <p className="mt-auto inline-flex items-center gap-1 pt-2 text-[15px] font-medium text-accent">
-          View case study
-          <ArrowRight aria-hidden className="size-4 transition-transform duration-150 group-hover:translate-x-0.5" />
-        </p>
+        <ChipList items={project.stack.slice(0, 5)} className="mt-1" />
+        <div className="mt-auto pt-2">
+          <CaseStudyCta />
+        </div>
       </div>
     </article>
   );

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { FileText, Mail } from "lucide-react";
 import { Section } from "@/components/layout/Section";
-import { FieldNoteCard, ProjectCard } from "@/components/project/ProjectCard";
+import { FeaturedProjectCard, FieldNoteCard, ProjectCard } from "@/components/project/ProjectCard";
 import { ButtonLink } from "@/components/ui/Button";
 import { Chip } from "@/components/ui/Chip";
 import { TextLink } from "@/components/ui/TextLink";
@@ -21,10 +21,10 @@ export function SelectedWork() {
       number="01"
       label="Selected Work"
       title="Selected work"
-      intro="Each one shows how I go from a business question to a working answer."
+      intro="Each project shows how I turn a business problem into a tested, data-backed solution."
     >
       <div className="grid gap-6">
-        <ProjectCard project={featured} featured />
+        <FeaturedProjectCard project={featured} />
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {rest.map((project) => (
             <ProjectCard key={project.slug} project={project} />
@@ -55,8 +55,11 @@ export function About() {
           />
         ) : null}
         <div className="max-w-3xl space-y-4">
-          {about.paragraphs.map((p) => (
-            <p key={p} className="text-[17px] leading-7 text-text">
+          {about.paragraphs.map((p, i) => (
+            <p
+              key={p}
+              className={i === 0 ? "text-xl leading-8 font-medium tracking-[-0.01em] text-text" : "text-[17px] leading-7 text-text"}
+            >
               {p}
             </p>
           ))}
