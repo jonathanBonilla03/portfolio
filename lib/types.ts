@@ -57,6 +57,12 @@ export type Project = {
   featured?: boolean;
   /** Headline numbers shown on the card and at the top of the case study. */
   highlights?: { value: string; label: string }[];
+  /** Stats for the home-page card, chosen so they don't repeat the hero proof strip. */
+  cardHighlights?: { value: string; label: string }[];
+  /** Thirty-second summary shown at the top of the case study. */
+  atAGlance?: { problem: string; role: string; solution: string; impact: string };
+  /** The 2–3 technologies shown on the home-page card. */
+  cardStack?: string[];
   cover?: ImageAsset & { frame?: "dark" | "light" };
   /** Shown on the card when there is no screenshot. */
   coverDiagram?: DiagramId;

@@ -105,9 +105,8 @@ export function FeaturedProjectCard({ project }: { project: Project }) {
           <p className="text-[17px] leading-7 text-muted">{project.summary}</p>
           <p className="text-sm text-muted">
             <span className="text-text">{project.role}</span>
-            {project.team ? ` · ${project.team}` : null}
           </p>
-          <ChipList items={project.stack.slice(0, 6)} className="mt-1" />
+          <ChipList items={project.cardStack ?? project.stack.slice(0, 3)} className="mt-1" />
           <div className="mt-auto pt-3">
             <CaseStudyCta />
           </div>
@@ -116,9 +115,9 @@ export function FeaturedProjectCard({ project }: { project: Project }) {
           <CardCover project={project} priority sizes="(min-width: 1024px) 620px, 100vw" />
         </div>
       </div>
-      {project.highlights?.length ? (
+      {(project.cardHighlights ?? project.highlights)?.length ? (
         <div className="border-t border-border bg-surface-muted p-4 md:p-6">
-          <Highlights items={project.highlights} size="lg" />
+          <Highlights items={project.cardHighlights ?? project.highlights ?? []} size="lg" />
         </div>
       ) : null}
     </article>
@@ -127,7 +126,7 @@ export function FeaturedProjectCard({ project }: { project: Project }) {
 
 export function ProjectCard({ project }: { project: Project }) {
   const href = `/projects/${project.slug}`;
-  const stat = project.highlights?.[0];
+  const stat = (project.cardHighlights ?? project.highlights)?.[0];
   return (
     <article className={cn(cardHover, "flex flex-col border-border hover:border-border-strong")}>
       <div className="relative aspect-[16/10] overflow-hidden border-b border-border bg-surface-muted">
@@ -150,7 +149,7 @@ export function ProjectCard({ project }: { project: Project }) {
           <span className="text-text">{project.role}</span>
           {project.team ? ` · ${project.team}` : null}
         </p>
-        <ChipList items={project.stack.slice(0, 5)} className="mt-1" />
+        <ChipList items={project.cardStack ?? project.stack.slice(0, 3)} className="mt-1" />
         <div className="mt-auto pt-2">
           <CaseStudyCta />
         </div>

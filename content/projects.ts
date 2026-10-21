@@ -49,6 +49,18 @@ export const projects: Project[] = [
     period: "2025 – 2026",
     type: "GCU capstone for an operating business",
     stack: ["PostgreSQL", "Supabase", "SQL", "Row-level security", "React", "Python"],
+    cardStack: ["PostgreSQL", "SQL", "Supabase"],
+    cardHighlights: [
+      { value: "4-person", label: "capstone team I led" },
+      { value: "6", label: "live data issues found and fixed" },
+      { value: "13,269", label: "product descriptions cleaned" },
+    ],
+    atAGlance: {
+      problem: "An operating tools business ran 13,000+ products, three warehouses, and bundle pricing out of Excel.",
+      role: "Defined the requirements from the business side, led the team, and designed the database.",
+      solution: "A PostgreSQL/Supabase relational model with SQL views for pricing and availability.",
+      impact: "Found and fixed six data-quality issues in the live system, including kit availability overstated at 3,355 when only 492 could be assembled.",
+    },
     focus: "Data migration, relational modeling, pricing and availability logic, data quality",
     featured: true,
     highlights: [
@@ -319,6 +331,13 @@ export const projects: Project[] = [
     period: "2025 – 2026",
     type: "Academic analytics project, GCU",
     stack: ["Python", "SQL", "Power BI", "Tableau"],
+    cardStack: ["Python", "SQL", "Power BI"],
+    atAGlance: {
+      problem: "Raw emergency call records couldn't answer basic questions about response performance.",
+      role: "Data analyst on an academic project.",
+      solution: "A Python and SQL pipeline that cleans, validates, and models the data for reporting.",
+      impact: "Power BI and Tableau dashboards tracking response time, call volume, and resource utilization.",
+    },
     focus: "Operational KPIs: response times, call volume, resource utilization",
     coverDiagram: "fire-ems-pipeline",
     sections: [
@@ -431,6 +450,14 @@ export const projects: Project[] = [
     period: "2026",
     type: "Independent project, synthetic data",
     stack: ["Python", "pandas", "scikit-learn", "matplotlib"],
+    cardStack: ["Python", "scikit-learn", "pandas"],
+    cardHighlights: [{ value: "30%", label: "discount where predicted margin turns negative" }],
+    atAGlance: {
+      problem: "Do discounts that raise revenue also raise profit?",
+      role: "Analyst, independent project on synthetic data.",
+      solution: "A Random Forest demand model plus a simulator that tests discounts from 0% to 30%.",
+      impact: "About 82% lower prediction error than baseline, and a clear result: a 5% discount lifts revenue but cuts margin.",
+    },
     focus: "Demand prediction and revenue-versus-margin tradeoffs",
     coverChart: "pricing-scenarios",
     highlights: [
@@ -558,6 +585,13 @@ export const projects: Project[] = [
     period: "2026 – Present",
     type: "Business systems project",
     stack: ["Next.js", "TypeScript", "Tailwind", "REST APIs", "AI integration", "Resend", "Calendly", "Vercel"],
+    cardStack: ["Next.js", "TypeScript", "REST APIs"],
+    atAGlance: {
+      problem: "Service businesses lose leads between the form, the follow-up, and the booking.",
+      role: "Founder and developer.",
+      solution: "One connected flow: lead capture, AI chat, booking, automated email, and analytics.",
+      impact: "Live at bonarotech.com: visitors get an instant answer, and every lead arrives with what follow-up needs.",
+    },
     focus: "Business process design and systems integration",
     cover: {
       src: "/images/projects/bonaro/cover.webp",
@@ -657,6 +691,22 @@ export const projects: Project[] = [
           {
             type: "paragraph",
             text: "The system is live at bonarotech.com. A visitor gets an immediate answer from the assistant, and every form submission arrives with the business, the service they need, and their own description of the problem, so follow-up can start without a back-and-forth.",
+          },
+        ],
+      },
+      {
+        id: "demonstrates",
+        heading: "What this demonstrates",
+        blocks: [
+          {
+            type: "list",
+            items: [
+              "Business requirements translated into a working system",
+              "Workflow design across several tools",
+              "API integration (Calendly, Resend, AI)",
+              "Full-stack development in Next.js and TypeScript",
+              "Testing and troubleshooting in production",
+            ],
           },
         ],
       },

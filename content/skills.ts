@@ -9,38 +9,22 @@ const aloy = { label: "ALOY", href: "/projects/aloy-field-note" };
 export const skillGroups: SkillGroup[] = [
   {
     title: "Data & Analytics",
-    skills: ["SQL", "Python", "pandas", "scikit-learn", "Excel", "Power BI", "Tableau", "KPI reporting", "Trend analysis"],
-    usedIn: [fireEms, pricing, aloy],
+    skills: ["SQL", "Python", "Excel", "Power BI", "Tableau", "pandas"],
+    usedIn: [fireEms, pricing, makmex],
   },
   {
-    title: "Databases & Modeling",
-    skills: [
-      "PostgreSQL",
-      "SQL Server",
-      "Supabase",
-      "Relational data modeling",
-      "SQL views",
-      "Data validation",
-      "Row-level security",
-      "ETL concepts",
-    ],
+    title: "Data Systems",
+    skills: ["PostgreSQL", "Supabase", "Data modeling", "SQL views", "Data validation"],
     usedIn: [makmex, fireEms],
   },
   {
     title: "Business Analysis",
-    skills: [
-      "Requirements analysis",
-      "Process improvement",
-      "Workflow analysis",
-      "Pricing & margin analysis",
-      "Stakeholder communication",
-      "Process documentation",
-    ],
-    usedIn: [aloy, makmex, bonaro],
+    skills: ["Requirements", "Process improvement", "KPI reporting", "Pricing analysis", "Stakeholder communication"],
+    usedIn: [makmex, bonaro, aloy],
   },
   {
-    title: "Development & Tools",
-    skills: ["JavaScript", "TypeScript", "React", "Next.js", "REST APIs", "Git & GitHub", "Vercel", "Docker"],
+    title: "Development",
+    skills: ["TypeScript", "React", "Next.js", "REST APIs", "Git & GitHub"],
     usedIn: [bonaro, makmex],
   },
 ];

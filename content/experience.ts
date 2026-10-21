@@ -11,8 +11,7 @@ export const experience: ExperienceEntry[] = [
       "I build lead capture, booking, communication, and analytics systems for home service businesses.",
     bullets: [
       "Translate business needs into documented workflows, system requirements, and analytics tracking.",
-      "Test releases, diagnose issues across APIs and data-routing workflows, and document processes for repeatable operations.",
-      "Use analytics, issue tracking, and stakeholder feedback to find operational gaps.",
+      "Test releases and diagnose issues across APIs and data-routing workflows.",
     ],
   },
   {
@@ -23,10 +22,8 @@ export const experience: ExperienceEntry[] = [
     summary:
       "I handled the analysis behind purchasing, pricing, and vendor decisions for a commercial supply business.",
     bullets: [
-      "Analyzed supplier costs, pricing, sales, shipments, inventory, revenue, and margins across 13,000+ SKUs in Excel-based reporting workflows.",
-      "Reviewed supplier, customer, purchase, and inventory records to catch inconsistencies and improve reporting accuracy.",
-      "Communicated findings to support purchasing, vendor, customer, and pricing decisions.",
-      "Led the modernization of MakMex, an ALOY business, from Excel-based workflows to a centralized PostgreSQL database as my Computer Science capstone.",
+      "Analyzed supplier costs, pricing, inventory, revenue, and margins across 13,000+ SKUs to support purchasing and pricing decisions.",
+      "Reconciled supplier, customer, and inventory records to catch inconsistencies before they reached a decision.",
     ],
   },
   {

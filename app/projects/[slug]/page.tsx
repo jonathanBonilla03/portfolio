@@ -46,7 +46,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
   const figureNumbers = numberFigures(project.sections.flatMap((s) => s.blocks));
 
   const meta = [
-    { label: "Role", value: project.role },
+    ...(project.atAGlance ? [] : [{ label: "Role", value: project.role }]),
     { label: "Timeline", value: project.period },
     ...(project.team ? [{ label: "Team", value: project.team }] : []),
     { label: "Type", value: project.type },
@@ -71,9 +71,32 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
           <p className="mt-4 text-lg leading-8 text-muted">{project.summary}</p>
         </header>
 
+        {project.atAGlance ? (
+          <section aria-labelledby="glance-h" className="mt-8 max-w-3xl rounded-[10px] border-l-2 border-accent bg-surface p-5 md:p-6">
+            <h2 id="glance-h" className="font-mono text-xs font-medium uppercase tracking-[0.08em] text-accent">
+              At a glance
+            </h2>
+            <dl className="mt-4 grid gap-3 text-[15px] leading-6 sm:grid-cols-[110px_1fr] sm:gap-x-6">
+              {(
+                [
+                  ["Problem", project.atAGlance.problem],
+                  ["My role", project.atAGlance.role],
+                  ["Solution", project.atAGlance.solution],
+                  ["Impact", project.atAGlance.impact],
+                ] as const
+              ).map(([label, value]) => (
+                <div key={label} className="contents">
+                  <dt className="font-semibold text-text">{label}</dt>
+                  <dd className="mb-1 text-text sm:mb-0">{value}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        ) : null}
+
         <dl
           className={`mt-10 grid gap-px overflow-hidden rounded-[10px] border border-border bg-border ${
-            meta.length === 4 ? "grid-cols-2 lg:grid-cols-4" : "grid-cols-1 sm:grid-cols-3"
+            { 4: "grid-cols-2 lg:grid-cols-4", 3: "grid-cols-1 sm:grid-cols-3", 2: "grid-cols-1 sm:grid-cols-2" }[meta.length] ?? "grid-cols-2"
           }`}
         >
           {meta.map((item) => (

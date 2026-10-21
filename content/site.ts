@@ -4,8 +4,8 @@ export const site = {
   title: "Jonathan Bonilla | Data Analytics & Business Intelligence",
   description:
     "Jonathan Bonilla is a data and business analyst in Phoenix, AZ with hands-on experience in SQL, Python, Power BI, Tableau, relational data modeling, and business systems.",
-  tagline: ["Data Analytics", "Business Intelligence", "SQL", "Python", "Business Systems"],
-  headline: "I turn messy business data into clear decisions, and build the systems that keep it clean.",
+  tagline: ["Data Analytics", "Business Intelligence", "Business Systems"],
+  headline: "I turn messy business data into clear decisions and build systems that keep it reliable.",
   intro:
     "Computer Science and Business graduate with hands-on experience in SQL, Python, Power BI, and real-world operational data.",
   email: "jbonilla9933@gmail.com",
@@ -14,6 +14,12 @@ export const site = {
     linkedin: "https://www.linkedin.com/in/jonathanbonilla03",
   },
   resumePdf: "/jonathan-bonilla-resume.pdf",
+  /** Headline evidence shown directly under the hero. */
+  proof: [
+    { value: "13,340", label: "product records migrated and modeled for MakMex", href: "/projects/makmex-data-system" },
+    { value: "3,355 → 492", label: "overstated kit availability found and fixed", href: "/projects/makmex-data-system#audit" },
+    { value: "~82%", label: "lower forecast error than baseline (Random Forest)", href: "/projects/predictive-pricing" },
+  ],
   quickScan: [
     { icon: "location", label: "Phoenix, AZ" },
     { icon: "work", label: "Open to on-site, hybrid, or remote" },
@@ -28,18 +34,15 @@ export const site = {
 } as const;
 
 export const about = {
-  lead: "I sit between the business problem and the data.",
+  lead: "Business question first, then the data and the build.",
   paragraphs: [
-    "What I enjoy most is understanding what a team actually needs to decide, then getting the right data in front of them clearly.",
-    "I studied Computer Science and Business Entrepreneurship at Grand Canyon University, and I've spent the last few years applying both. As co-founder of a commercial supply business, I analyzed pricing, margins, and inventory across thousands of products, and learned how messy real business data can be. As a developer, I've built the databases, workflows, and tools that keep that data reliable.",
-    "I'm bilingual in English and Spanish, and comfortable explaining technical work to non-technical people.",
+    "I studied Computer Science and Business Entrepreneurship, which shaped how I approach problems: understand the business question first, then use data and technology to solve it. My experience ranges from analyzing 13,000+ SKUs in an operating business to designing databases, dashboards, automation workflows, and machine-learning projects.",
+    "What I enjoy most is understanding what a team actually needs to decide, then getting the right data in front of them clearly. I'm bilingual in English and Spanish, and comfortable explaining technical work to non-technical people.",
   ],
   steps: [
-    { title: "Understand the problem", text: "What decision does this need to support?" },
-    { title: "Model the data", text: "Structure it so it can answer that question reliably." },
-    { title: "Validate", text: "Catch duplicates, gaps, and inconsistencies before they reach a report." },
-    { title: "Visualize", text: "Build dashboards and reports people can read quickly." },
-    { title: "Communicate", text: "Explain what the data shows and what to do about it." },
+    { title: "Understand", text: "Define the decision and the requirements behind it." },
+    { title: "Build & validate", text: "Structure the data, test assumptions, and catch inconsistencies." },
+    { title: "Communicate", text: "Turn the result into something a stakeholder can act on." },
   ],
 };
 

@@ -1,4 +1,5 @@
 import { Briefcase, Languages, MapPin, type LucideIcon } from "lucide-react";
+import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { ButtonLink } from "@/components/ui/Button";
 import { site } from "@/content/site";
@@ -53,7 +54,20 @@ export function Hero() {
           </div>
         </div>
 
-        <ul aria-label="At a glance" className="mt-12 flex flex-wrap gap-x-6 gap-y-3 border-t border-border pt-6">
+        <ul aria-label="Selected results" className="mt-12 grid gap-px overflow-hidden rounded-[10px] border border-border bg-border sm:grid-cols-3">
+          {site.proof.map((item) => (
+            <li key={item.label} className="bg-surface">
+              <Link href={item.href} className="group block h-full p-5 transition-colors hover:bg-surface-muted">
+                <span className="block font-mono text-[28px] font-semibold leading-9 tracking-[-0.02em] text-accent">
+                  {item.value}
+                </span>
+                <span className="mt-1 block text-sm leading-5 text-muted group-hover:text-text">{item.label}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        <ul aria-label="At a glance" className="mt-6 flex flex-wrap gap-x-6 gap-y-3">
           {site.quickScan.map((item) => {
             const Icon = icons[item.icon];
             return (

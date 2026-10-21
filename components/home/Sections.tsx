@@ -1,12 +1,12 @@
 import Image from "next/image";
 import { FileText, Mail } from "lucide-react";
 import { Section } from "@/components/layout/Section";
-import { FeaturedProjectCard, FieldNoteCard, ProjectCard } from "@/components/project/ProjectCard";
+import { FeaturedProjectCard, ProjectCard } from "@/components/project/ProjectCard";
 import { ButtonLink } from "@/components/ui/Button";
 import { Chip } from "@/components/ui/Chip";
 import { TextLink } from "@/components/ui/TextLink";
 import { experience } from "@/content/experience";
-import { caseStudies, fieldNotes } from "@/content/projects";
+import { caseStudies } from "@/content/projects";
 import { about, education, site } from "@/content/site";
 import { skillGroups } from "@/content/skills";
 import Link from "next/link";
@@ -30,9 +30,6 @@ export function SelectedWork() {
             <ProjectCard key={project.slug} project={project} />
           ))}
         </div>
-        {fieldNotes.map((note) => (
-          <FieldNoteCard key={note.slug} project={note} />
-        ))}
       </div>
     </Section>
   );
@@ -55,10 +52,10 @@ export function About() {
           />
         ) : null}
         <div className="max-w-3xl space-y-4">
-          {about.paragraphs.map((p, i) => (
+          {about.paragraphs.map((p) => (
             <p
               key={p}
-              className={i === 0 ? "text-xl leading-8 font-medium tracking-[-0.01em] text-text" : "text-[17px] leading-7 text-text"}
+              className="text-[17px] leading-7 text-text"
             >
               {p}
             </p>
@@ -68,7 +65,7 @@ export function About() {
 
       <div className="mt-14">
         <h3 className="font-mono text-xs font-medium uppercase tracking-[0.08em] text-muted">How I work</h3>
-        <ol className="relative mt-6 grid gap-6 md:grid-cols-5 md:gap-4">
+        <ol className="relative mt-6 grid gap-6 md:grid-cols-3 md:gap-8">
           <span aria-hidden className="absolute left-[11px] top-3 bottom-3 w-px bg-border md:left-3 md:right-3 md:top-[11px] md:bottom-auto md:h-px md:w-auto" />
           {about.steps.map((step, i) => (
             <li key={step.title} className="relative flex gap-4 md:flex-col md:gap-3">
@@ -139,7 +136,6 @@ export function Experience() {
               <h3 className="text-xl font-semibold leading-7 tracking-[-0.01em] text-text">
                 {job.role} <span className="font-normal text-muted">· {job.company}</span>
               </h3>
-              <p className="mt-1 text-sm text-muted">{job.location}</p>
               <p className="mt-3 max-w-3xl text-[17px] leading-7 text-text">{job.summary}</p>
               {job.bullets.length > 0 ? (
                 <ul className="mt-4 max-w-3xl space-y-2">

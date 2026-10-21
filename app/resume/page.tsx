@@ -26,6 +26,23 @@ const coreSkills = [
   { label: "Tools", value: "Microsoft Office, Git, GitHub, Vercel, Google Workspace, ClickUp" },
 ];
 
+/** Full resume bullets (the home page shows a shorter version). Matches the PDF. */
+const resumeBullets: Record<string, string[]> = {
+  "Bonaro Tech": [
+    "Translated business needs into documented workflows, system requirements, analytics tracking, and customer-facing solutions across lead capture, booking, communication, and automation processes.",
+    "Tested releases, diagnosed issues across APIs and data-routing workflows, and created process documentation to improve reliability and support repeatable operations.",
+    "Used analytics, issue tracking, process reviews, and stakeholder feedback to identify operational gaps and support data-informed improvements.",
+  ],
+  "ALOY Commercial LLC": [
+    "Analyzed supplier costs, pricing, sales, shipment activity, inventory movement, revenue, and margin performance across 13,000+ SKUs using Excel-based reporting workflows.",
+    "Reviewed supplier, customer, purchase, shipment, and inventory records to identify inconsistencies, improve reporting accuracy, and support operational and financial decisions.",
+    "Organized supporting data and communicated findings to support purchasing, vendor, customer, and pricing decisions.",
+  ],
+  "Panda Express & Zipps Sports Grill": [
+    "Supported high-volume operations, trained team members, resolved customer issues, coordinated across teams, and maintained accuracy and professionalism under deadline and service pressure.",
+  ],
+};
+
 const resumeProjects = [
   {
     title: "MakMex Data & Pricing System",
@@ -135,7 +152,7 @@ export default function ResumePage() {
                     </p>
                   </div>
                   <ul className="mt-2 list-disc space-y-1 pl-5 text-[15px] leading-6 text-text marker:text-muted">
-                    {(job.bullets.length ? job.bullets : [job.summary]).map((b) => (
+                    {(resumeBullets[job.company] ?? job.bullets).map((b) => (
                       <li key={b}>{b}</li>
                     ))}
                   </ul>
