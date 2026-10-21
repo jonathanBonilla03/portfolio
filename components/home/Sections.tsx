@@ -192,7 +192,7 @@ export function Contact() {
     <Section id="contact" number="06" label="Contact" title="Let's talk.">
       <div className="max-w-2xl">
         <p className="text-[17px] leading-7 text-text">
-          I&apos;m looking for roles in data analytics, business intelligence, and business analysis. If you&apos;re
+          I&apos;m looking for roles in data analytics, business intelligence, business analysis, and technical operations. If you&apos;re
           hiring, or just want to talk data, I&apos;d like to hear from you.
         </p>
         <a
