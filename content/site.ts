@@ -7,7 +7,7 @@ export const site = {
   tagline: ["Data Analytics", "Business Intelligence", "Business Systems"],
   headline: "I turn messy business data into clear decisions and build systems that keep it reliable.",
   intro:
-    "Computer Science and Business graduate with hands-on experience in SQL, Python, Power BI, and real-world operational data.",
+    "Computer Science and Business Entrepreneurship graduate with hands-on experience in SQL, Python, Power BI, and real-world operational data.",
   email: "jbonilla9933@gmail.com",
   links: {
     github: "https://github.com/jonathanBonilla03",
