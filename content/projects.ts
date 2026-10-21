@@ -722,71 +722,9 @@ export const projects: Project[] = [
       },
     ],
   },
-
-  // ---------------------------------------------------------------------------
-  {
-    slug: "aloy-field-note",
-    kind: "field-note",
-    title: "ALOY Commercial: analysis across 13,000+ SKUs",
-    label: "FIELD NOTE · 2022–26",
-    summary:
-      "How I structured pricing, margin, and inventory analysis for a commercial supply business, and what real data taught me about data quality.",
-    role: "Co-founder & business analyst",
-    period: "2022 – June 2026",
-    type: "Field note",
-    stack: ["Excel", "Operational and financial records"],
-    focus: "Pricing, margin, and inventory analysis on real business data",
-    sections: [
-      {
-        id: "what-it-was",
-        heading: "What it was",
-        blocks: [
-          {
-            type: "paragraph",
-            text: "Four years as co-founder and business analyst of a commercial supply business with more than 13,000 SKUs.",
-          },
-        ],
-      },
-      {
-        id: "analysis",
-        heading: "The analysis",
-        blocks: [
-          {
-            type: "paragraph",
-            text: "I tracked supplier costs, pricing, sales, shipments, inventory, revenue, and margins in Excel-based reporting workflows. That analysis fed decisions about purchasing, vendors, customers, and pricing.",
-          },
-        ],
-      },
-      {
-        id: "lessons",
-        heading: "What real data taught me",
-        blocks: [
-          {
-            type: "paragraph",
-            text: "Records from suppliers, customers, purchases, and shipments rarely matched perfectly. Much of my work was reconciling them: catching inconsistencies, tracing where they came from, and making sure the numbers behind a decision were right.",
-          },
-          {
-            type: "paragraph",
-            text: "This is where I learned that analysis exists to support decisions, and that data quality decides whether a decision can be trusted.",
-          },
-        ],
-      },
-      {
-        id: "next",
-        heading: "What came next",
-        blocks: [
-          {
-            type: "paragraph",
-            text: "Those spreadsheet limits are what led to MakMex, my capstone, where I moved one of ALOY's businesses onto a real database.",
-          },
-        ],
-      },
-    ],
-  },
 ];
 
 export const caseStudies = projects.filter((p) => p.kind === "case-study");
-export const fieldNotes = projects.filter((p) => p.kind === "field-note");
 
 export function getProject(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);

@@ -157,31 +157,3 @@ export function ProjectCard({ project }: { project: Project }) {
     </article>
   );
 }
-
-export function FieldNoteCard({ project }: { project: Project }) {
-  return (
-    <article className="group relative rounded-[10px] border border-border bg-surface-muted p-6 transition-colors hover:border-border-strong md:p-8">
-      <p className="font-mono text-xs font-medium uppercase tracking-[0.08em] text-accent">Field note</p>
-      <div className="mt-3 flex flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-10">
-        <div className="max-w-2xl">
-          <h3 className="text-xl font-semibold leading-7 tracking-[-0.01em] text-text">
-            <Link
-              href={`/projects/${project.slug}`}
-              className="after:absolute after:inset-0 after:rounded-[10px] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-accent"
-            >
-              {project.title}
-            </Link>
-          </h3>
-          <p className="mt-2 text-[15px] leading-6 text-muted">{project.summary}</p>
-          <p className="mt-2 text-sm text-muted">
-            <span className="text-text">{project.role}</span> · {project.period}
-          </p>
-        </div>
-        <p className="inline-flex shrink-0 items-center gap-1 text-[15px] font-medium text-accent">
-          Read field note
-          <ArrowRight aria-hidden className="size-4 transition-transform duration-150 group-hover:translate-x-0.5" />
-        </p>
-      </div>
-    </article>
-  );
-}

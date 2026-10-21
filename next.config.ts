@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async redirects() {
+    // The ALOY field note was folded into Experience.
+    return [{ source: "/projects/aloy-field-note", destination: "/#experience", permanent: true }];
+  },
 };
 
 export default nextConfig;

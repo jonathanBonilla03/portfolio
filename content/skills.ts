@@ -4,7 +4,7 @@ const fireEms = { label: "Fire & EMS", href: "/projects/fire-ems-data-warehouse"
 const makmex = { label: "MakMex", href: "/projects/makmex-data-system" };
 const pricing = { label: "Predictive Pricing", href: "/projects/predictive-pricing" };
 const bonaro = { label: "Bonaro Tech", href: "/projects/bonaro-tech-platform" };
-const aloy = { label: "ALOY", href: "/projects/aloy-field-note" };
+const aloy = { label: "ALOY", href: "/#experience" };
 
 export const skillGroups: SkillGroup[] = [
   {
