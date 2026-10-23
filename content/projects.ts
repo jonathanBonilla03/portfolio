@@ -590,7 +590,7 @@ export const projects: Project[] = [
       problem: "Service businesses lose leads between the form, the follow-up, and the booking.",
       role: "Founder and developer.",
       solution: "One connected flow: lead capture, AI chat, booking, automated email, and analytics.",
-      impact: "Live at bonarotech.com: visitors get an instant answer, and every lead arrives with what follow-up needs.",
+      impact: "Live at bonarotech.com, and running two client sites: a cabinet and countertop company and a teeth-whitening studio.",
     },
     focus: "Business process design and systems integration",
     cover: {
@@ -599,7 +599,12 @@ export const projects: Project[] = [
       width: 1821,
       height: 1138,
     },
-    links: [{ label: "Live site", href: "https://bonarotech.com" }],
+    cardHighlights: [{ value: "2", label: "client sites live" }],
+    links: [
+      { label: "Bonaro Tech", href: "https://bonarotech.com" },
+      { label: "DBL Cabinet Designs", href: "https://www.dblcabinetdesigns.com" },
+      { label: "CamiGlow Smiles", href: "https://camiglowsmiles.com" },
+    ],
     sections: [
       {
         id: "overview",
@@ -691,6 +696,38 @@ export const projects: Project[] = [
           {
             type: "paragraph",
             text: "The system is live at bonarotech.com. A visitor gets an immediate answer from the assistant, and every form submission arrives with the business, the service they need, and their own description of the problem, so follow-up can start without a back-and-forth.",
+          },
+        ],
+      },
+      {
+        id: "client-work",
+        heading: "Client work",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "The same approach, applied to real local businesses. Each site starts from how the owner gets customers, then gives visitors one clear next step.",
+          },
+          {
+            type: "figure",
+            image: {
+              src: "/images/projects/bonaro/dbl-cabinet.webp",
+              alt: "DBL Cabinet Designs homepage: dark navy hero with the headline 'Cabinet & Countertop Solutions for Every Space & Budget', Free Quote buttons, and kitchen and vanity photos.",
+              width: 1800,
+              height: 982,
+            },
+            caption:
+              "DBL Cabinet Designs (Gilbert, AZ). Next.js and TypeScript site for a cabinet and countertop company, with every quote path (form, call, text, WhatsApp) one tap away, and all content kept in one file so updates never touch layout code.",
+          },
+          {
+            type: "figure",
+            image: {
+              src: "/images/projects/bonaro/camiglow.webp",
+              alt: "CamiGlow Smiles homepage: cream and gold hero reading 'Reveal Your Radiant Smile' with Book a Session and Our Services buttons beside the gold logo.",
+              width: 1800,
+              height: 980,
+            },
+            caption:
+              "CamiGlow Smiles (Phoenix, AZ). React and Supabase booking site for a teeth-whitening studio, built around getting a visitor from services and results to a booked session.",
           },
         ],
       },
