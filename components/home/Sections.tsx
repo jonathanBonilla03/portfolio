@@ -193,7 +193,7 @@ export function Contact() {
       <div className="max-w-2xl">
         <p className="text-[17px] leading-7 text-text">
           I&apos;m looking for roles in data analytics, business intelligence, business analysis, and technical operations. If you&apos;re
-          hiring, or just want to talk data, I&apos;d like to hear from you.
+          hiring for a data, analytics, business systems, or technical operations role, I&apos;d be glad to connect.
         </p>
         <a
           href={`mailto:${site.email}`}
