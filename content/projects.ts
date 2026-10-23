@@ -716,7 +716,7 @@ export const projects: Project[] = [
               height: 982,
             },
             caption:
-              "DBL Cabinet Designs (Gilbert, AZ). Next.js and TypeScript site for a cabinet and countertop company, with every quote path (form, call, text, WhatsApp) one tap away, and all content kept in one file so updates never touch layout code.",
+              "DBL Cabinet Designs (Gilbert, AZ). Next.js and TypeScript site for a cabinet and countertop company, with call, text, and WhatsApp quote requests one tap away, and all content kept in one file so updates never touch layout code.",
           },
           {
             type: "figure",
