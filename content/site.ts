@@ -5,7 +5,7 @@ export const site = {
   description:
     "Jonathan Bonilla is a data and business analyst in Phoenix, AZ with hands-on experience in SQL, Python, Power BI, Tableau, relational data modeling, and business systems.",
   tagline: ["Data Analytics", "Business Intelligence", "Business Systems"],
-  headline: "I turn messy business data into clear decisions and build systems that keep it reliable.",
+  headline: "My goal is to use data and technology to improve business processes, reporting, and decision-making.",
   intro:
     "Computer Science and Business Entrepreneurship graduate with hands-on experience in SQL, Python, Power BI, and real-world operational data.",
   email: "jbonilla9933@gmail.com",
