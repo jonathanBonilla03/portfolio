@@ -1,7 +1,10 @@
 import Image from "next/image";
 import { FileText, Mail } from "lucide-react";
 import { Section } from "@/components/layout/Section";
-import { FeaturedProjectCard, ProjectCard } from "@/components/project/ProjectCard";
+import {
+  FeaturedProjectCard,
+  ProjectCard,
+} from "@/components/project/ProjectCard";
 import { ButtonLink } from "@/components/ui/Button";
 import { Chip } from "@/components/ui/Chip";
 import { TextLink } from "@/components/ui/TextLink";
@@ -36,7 +39,9 @@ export function SelectedWork() {
 }
 
 const headshotPath = "/images/headshot.webp";
-const hasHeadshot = existsSync(path.join(process.cwd(), "public", headshotPath));
+const hasHeadshot = existsSync(
+  path.join(process.cwd(), "public", headshotPath),
+);
 
 export function About() {
   return (
@@ -53,10 +58,7 @@ export function About() {
         ) : null}
         <div className="max-w-3xl space-y-4">
           {about.paragraphs.map((p) => (
-            <p
-              key={p}
-              className="text-[17px] leading-7 text-text"
-            >
+            <p key={p} className="text-[17px] leading-7 text-text">
               {p}
             </p>
           ))}
@@ -64,16 +66,26 @@ export function About() {
       </div>
 
       <div className="mt-14">
-        <h3 className="font-mono text-xs font-medium uppercase tracking-[0.08em] text-muted">How I work</h3>
+        <h3 className="font-mono text-xs font-medium uppercase tracking-[0.08em] text-muted">
+          How I work
+        </h3>
         <ol className="relative mt-6 grid gap-6 md:grid-cols-3 md:gap-8">
-          <span aria-hidden className="absolute left-[11px] top-3 bottom-3 w-px bg-border md:left-3 md:right-3 md:top-[11px] md:bottom-auto md:h-px md:w-auto" />
+          <span
+            aria-hidden
+            className="absolute left-[11px] top-3 bottom-3 w-px bg-border md:left-3 md:right-3 md:top-[11px] md:bottom-auto md:h-px md:w-auto"
+          />
           {about.steps.map((step, i) => (
-            <li key={step.title} className="relative flex gap-4 md:flex-col md:gap-3">
+            <li
+              key={step.title}
+              className="relative flex gap-4 md:flex-col md:gap-3"
+            >
               <span className="relative z-10 flex size-6 shrink-0 items-center justify-center rounded-full border border-border-strong bg-bg font-mono text-[11px] text-accent">
                 {i + 1}
               </span>
               <div>
-                <p className="text-[15px] font-semibold text-text">{step.title}</p>
+                <p className="text-[15px] font-semibold text-text">
+                  {step.title}
+                </p>
                 <p className="mt-1 text-sm leading-6 text-muted">{step.text}</p>
               </div>
             </li>
@@ -95,8 +107,13 @@ export function Skills() {
     >
       <div className="grid gap-6 md:grid-cols-2">
         {skillGroups.map((group) => (
-          <div key={group.title} className="rounded-[10px] border border-border bg-surface p-6">
-            <h3 className="text-[17px] font-semibold text-text">{group.title}</h3>
+          <div
+            key={group.title}
+            className="rounded-[10px] border border-border bg-surface p-6"
+          >
+            <h3 className="text-[17px] font-semibold text-text">
+              {group.title}
+            </h3>
             <ul className="mt-4 flex flex-wrap gap-1.5">
               {group.skills.map((skill) => (
                 <li key={skill}>
@@ -108,7 +125,10 @@ export function Skills() {
               Used in:{" "}
               {group.usedIn.map((link, i) => (
                 <span key={link.href}>
-                  <Link href={link.href} className="text-accent underline-offset-4 hover:text-accent-hover hover:underline">
+                  <Link
+                    href={link.href}
+                    className="whitespace-nowrap text-accent underline-offset-4 hover:text-accent-hover hover:underline"
+                  >
                     {link.label}
                   </Link>
                   {i < group.usedIn.length - 1 ? " · " : ""}
@@ -127,21 +147,35 @@ export function Experience() {
     <Section id="experience" number="04" label="Experience" title="Experience">
       <ol className="divide-y divide-border border-y border-border">
         {experience.map((job) => (
-          <li key={job.company} className="grid gap-2 py-8 lg:grid-cols-[180px_1fr] lg:gap-8">
+          <li
+            key={job.company}
+            className="grid gap-2 py-8 lg:grid-cols-[180px_1fr] lg:gap-8"
+          >
             <p className="font-mono text-sm text-muted">
               {job.period}
-              {job.note ? <span className="block text-xs">{job.note}</span> : null}
+              {job.note ? (
+                <span className="block text-xs">{job.note}</span>
+              ) : null}
             </p>
             <div>
               <h3 className="text-xl font-semibold leading-7 tracking-[-0.01em] text-text">
-                {job.role} <span className="font-normal text-muted">· {job.company}</span>
+                {job.role}{" "}
+                <span className="font-normal text-muted">· {job.company}</span>
               </h3>
-              <p className="mt-3 max-w-3xl text-[17px] leading-7 text-text">{job.summary}</p>
+              <p className="mt-3 max-w-3xl text-[17px] leading-7 text-text">
+                {job.summary}
+              </p>
               {job.bullets.length > 0 ? (
                 <ul className="mt-4 max-w-3xl space-y-2">
                   {job.bullets.map((b) => (
-                    <li key={b} className="relative pl-5 text-[15px] leading-6 text-muted">
-                      <span aria-hidden className="absolute left-0 top-[0.7em] h-px w-2.5 bg-accent" />
+                    <li
+                      key={b}
+                      className="relative pl-5 text-[15px] leading-6 text-muted"
+                    >
+                      <span
+                        aria-hidden
+                        className="absolute left-0 top-[0.7em] h-px w-2.5 bg-accent"
+                      />
                       {b}
                     </li>
                   ))}
@@ -160,18 +194,44 @@ export function Education() {
     <Section id="education" number="05" label="Education" title="Education">
       <div className="rounded-[10px] border border-border bg-surface p-6 md:p-8">
         <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-          <h3 className="text-xl font-semibold text-text">{education.school}</h3>
+          <h3 className="text-xl font-semibold text-text">
+            {education.school}
+          </h3>
           <p className="font-mono text-sm text-muted">{education.year}</p>
         </div>
         <p className="mt-1 text-[17px] text-text">{education.degree}</p>
-        <p className="mt-1 text-sm text-muted">{education.honors.join(" · ")}</p>
+        <p className="mt-1 text-sm text-muted">
+          {education.honors.join(" · ")}
+        </p>
 
         <div className="mt-6 grid gap-6 md:grid-cols-2">
           <div>
-            <h4 className="font-mono text-xs font-medium uppercase tracking-[0.08em] text-muted">Certifications</h4>
-            <ul className="mt-3 space-y-1.5 text-[15px] text-text">
+            <h4 className="font-mono text-xs font-medium uppercase tracking-[0.08em] text-muted">
+              Certifications
+            </h4>
+            <ul className="mt-3 space-y-3 text-[15px] text-text">
               {education.certifications.map((c) => (
-                <li key={c}>{c}</li>
+                <li key={c.name}>
+                  {c.name}
+                  {c.detail ? (
+                    <span className="block text-sm text-muted">
+                      {c.detail}
+                      {c.href ? (
+                        <>
+                          {" · "}
+                          <a
+                            href={c.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="whitespace-nowrap text-accent underline-offset-4 hover:text-accent-hover hover:underline"
+                          >
+                            Verify credential
+                          </a>
+                        </>
+                      ) : null}
+                    </span>
+                  ) : null}
+                </li>
               ))}
             </ul>
           </div>
@@ -179,7 +239,9 @@ export function Education() {
             <h4 className="font-mono text-xs font-medium uppercase tracking-[0.08em] text-muted">
               Relevant coursework
             </h4>
-            <p className="mt-3 text-[15px] leading-7 text-text">{education.coursework.join(", ")}</p>
+            <p className="mt-3 text-[15px] leading-7 text-text">
+              {education.coursework.join(", ")}
+            </p>
           </div>
         </div>
       </div>
@@ -192,8 +254,10 @@ export function Contact() {
     <Section id="contact" number="06" label="Contact" title="Let's talk.">
       <div className="max-w-2xl">
         <p className="text-[17px] leading-7 text-text">
-          I&apos;m looking for roles in data analytics, business intelligence, business analysis, and technical operations. If you&apos;re
-          hiring for a data, analytics, business systems, or technical operations role, I&apos;d be glad to connect.
+          I&apos;m looking for roles in data analytics, business intelligence,
+          business analysis, and technical operations. If you&apos;re hiring for
+          a data, analytics, business systems, or technical operations role,
+          I&apos;d be glad to connect.
         </p>
         <a
           href={`mailto:${site.email}`}

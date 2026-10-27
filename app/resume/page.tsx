@@ -196,7 +196,18 @@ export default function ResumePage() {
                 {education.honors.join(" · ")}
               </p>
               <p>
-                <span className="font-semibold">Certifications:</span> {education.certifications.join(" · ")}
+                <span className="font-semibold">Certifications:</span> {education.certifications.map((c, i) => (
+                  <span key={c.name}>
+                    {i > 0 ? " · " : ""}
+                    {c.href ? (
+                      <a href={c.href} className="text-accent hover:underline" target="_blank" rel="noopener noreferrer">
+                        {c.name}
+                      </a>
+                    ) : (
+                      c.name
+                    )}
+                  </span>
+                ))}
               </p>
               <p>
                 <span className="font-semibold">Relevant coursework:</span> {education.coursework.join(", ")}

@@ -51,7 +51,14 @@ export const education = {
   degree: "B.S. Computer Science and Business Entrepreneurship",
   year: "2026",
   honors: ["Honors College", "President's Scholarship"],
-  certifications: ["Google Data Analytics Professional Certificate", "Foundations of Business Intelligence"],
+  certifications: [
+    {
+      name: "Google Data Analytics Professional Certificate",
+      detail: "Google · Coursera · Mar 2025",
+      href: "https://coursera.org/verify/professional-cert/DQPWUGABCQLE",
+    },
+    { name: "Foundations of Business Intelligence" },
+  ] as { name: string; detail?: string; href?: string }[],
   coursework: [
     "Database Systems",
     "Analytics",
