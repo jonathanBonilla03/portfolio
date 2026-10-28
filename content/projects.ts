@@ -759,6 +759,225 @@ export const projects: Project[] = [
       },
     ],
   },
+
+  // ---------------------------------------------------------------------------
+  {
+    slug: "sales-inventory-margin",
+    kind: "case-study",
+    title: "Sales, Inventory & Margin Dashboard",
+    label: "INDEPENDENT · IN PROGRESS · 2026",
+    summary:
+      "Cleaned six raw tables in Power Query, built a star-schema model with DAX measures, and traced one branch's weak margin to its discounting.",
+    role: "BI analyst",
+    period: "2026",
+    type: "Independent Power BI project, synthetic data",
+    stack: ["Power BI", "Power Query", "DAX", "Data modeling"],
+    cardStack: ["Power BI", "Power Query", "DAX"],
+    atAGlance: {
+      problem: "A multi-branch distributor needs to see where revenue and margin come from, and why one branch earns less.",
+      role: "BI analyst, independent project on synthetic data.",
+      solution: "Power Query cleaning with a staging query and an exceptions check, a star-schema model, and DAX measures for revenue, margin, and discounts.",
+      impact: "Found that the lowest-margin branch discounted 15.4% off list, compared with 9.6% at the other five.",
+    },
+    focus: "Data preparation, star-schema modeling, and margin analysis in Power BI",
+    cover: {
+      src: "/images/projects/sales-margin/model-view.webp",
+      alt: "Power BI model view: a Sales fact table linked to products, customers, locations, and Date, with inventory and targets fact tables sharing the same dimensions.",
+      width: 1578,
+      height: 1148,
+    },
+    highlights: [
+      { value: "26,091", label: "sales lines, matching the expected count after cleaning" },
+      { value: "18", label: "sales lines caught referencing a product that doesn't exist" },
+      { value: "15.4% vs 9.6%", label: "discount at the weakest branch vs. the other five" },
+    ],
+    cardHighlights: [{ value: "30.3%", label: "margin at the weakest branch, vs. about 35% elsewhere" }],
+    sections: [
+      {
+        id: "overview",
+        heading: "Overview",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "A Power BI project built end to end: raw CSV files cleaned in Power Query, a star-schema data model, and DAX measures that answer business questions about sales, margin, and inventory for a fictional six-branch Arizona trade-supply distributor.",
+          },
+          {
+            type: "callout",
+            title: "In progress",
+            text: "The data preparation, model, and core measures are finished and validated. Return, target, inventory, and time-based measures come next, followed by the report pages.",
+          },
+        ],
+      },
+      {
+        id: "problem",
+        heading: "Problem",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Management wants one place to see revenue, profitability, discounts, inventory health, and branch performance. The data arrives as six separate exports with inconsistent values, duplicates, and broken references, so it can't be trusted until it's cleaned and connected.",
+          },
+        ],
+      },
+      {
+        id: "data",
+        heading: "Data",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Synthetic data covering January 2025 to September 2026: about 26,000 sales lines, 147 products, 450 customers, 6 branches, monthly inventory snapshots, and monthly revenue and margin targets. The files contain known data-quality problems, so each cleaning step could be checked against an expected result.",
+          },
+        ],
+      },
+      {
+        id: "preparation",
+        heading: "Data preparation",
+        blocks: [
+          {
+            type: "list",
+            items: [
+              "Removed 45 duplicate sales lines using the line-level key.",
+              "Standardized the Channel field from 14 spellings down to 4, and fixed lowercase branch codes that would have broken the join to the branch table.",
+              "Found 260 missing discount values. Instead of defaulting them to 0, I checked the prices first: most of those lines sold below list price, so I calculated the discount from list and selling price. The formula reproduced every discount that was recorded.",
+              "Excluded 12 lines with zero or negative quantities, since returns are tracked in a separate field.",
+              "Moved the shared cleaning into a staging query, then branched it: an inner join builds the clean sales table, and a left anti-join builds an exceptions table of sales whose product doesn't exist.",
+              "Trimmed text, standardized casing, and removed duplicate keys in the customer and product tables so every dimension key is unique.",
+            ],
+          },
+          {
+            type: "figure",
+            image: {
+              src: "/images/projects/sales-margin/power-query-steps.webp",
+              alt: "Power Query editor showing the Sales_Staging query, column quality profiles, and a list of renamed applied steps such as 'Remove duplicate lines' and 'Derived missing discounts from prices'.",
+              width: 1680,
+              height: 1161,
+            },
+            caption:
+              "The staging query. Each step is renamed to describe what it does, and column profiling runs on the full dataset.",
+          },
+          {
+            type: "figure",
+            image: {
+              src: "/images/projects/sales-margin/exceptions-query.webp",
+              alt: "Power Query exceptions query listing 18 sales lines, all with product ID P-9999, spread across several branches and dates from 2025 to 2026.",
+              width: 1662,
+              height: 1154,
+            },
+            caption:
+              "The exceptions query: 18 sales lines pointing to a product that isn't in the product table. They span five branches and both years, which points to a recurring setup problem rather than a one-time import error.",
+          },
+          {
+            type: "paragraph",
+            text: "After cleaning, the sales table loaded with 26,091 rows and 11,491 distinct orders, matching the expected counts exactly.",
+          },
+        ],
+      },
+      {
+        id: "model",
+        heading: "Data model",
+        blocks: [
+          {
+            type: "figure",
+            image: {
+              src: "/images/projects/sales-margin/model-view.webp",
+              alt: "Power BI model view with nine one-to-many relationships between the products, customers, locations, and Date dimensions and the Sales, inventory, and targets fact tables.",
+              width: 1578,
+              height: 1148,
+            },
+            caption:
+              "Three fact tables (sales, inventory snapshots, and targets) share four dimension tables through nine one-to-many relationships.",
+          },
+          {
+            type: "list",
+            items: [
+              "Built a Date table in DAX covering every date in every fact table, marked it as the model's date table, and set month names to sort by month number.",
+              "Kept every relationship one-to-many with single-direction filtering, so filters flow from dimensions to facts.",
+              "Deleted an auto-detected relationship on City between customers and branches, which would have created a second filter path to sales.",
+              "Hid the key columns on the fact tables so reports filter through the dimensions. A filter on a fact table's key can't reach the other fact tables.",
+              "Turned off default summing for prices, percentages, and sort keys, so totals only come from measures.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "measures",
+        heading: "Measures",
+        blocks: [
+          {
+            type: "table",
+            caption: "Core DAX measures, kept in a dedicated measures table",
+            columns: ["Measure", "Definition"],
+            rows: [
+              ["Revenue", "Units × selling price, summed row by row (SUMX)"],
+              ["COGS", "Units × unit cost, summed row by row"],
+              ["Gross Margin / Gross Margin %", "Revenue − COGS, and that divided by revenue (DIVIDE)"],
+              ["Orders", "Distinct order IDs, since one order has several lines"],
+              ["Average Order Value", "Revenue ÷ orders"],
+              ["Discount %", "1 − revenue ÷ revenue at list price, weighted by sale size"],
+              ["Discount $", "Revenue at list price − actual revenue"],
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "Discount % is weighted on purpose. A plain average of the discount column counts a $5 line the same as a $30,000 one; weighting by revenue answers how much of the list price was actually given away.",
+          },
+        ],
+      },
+      {
+        id: "finding",
+        heading: "First finding",
+        blocks: [
+          {
+            type: "figure",
+            image: {
+              src: "/images/projects/sales-margin/location-margin-table.webp",
+              alt: "Power BI table by branch: Mesa shows 30.3% gross margin and 15.4% discount, while the other five branches show 34.2% to 35.3% margin and 8.9% to 10.2% discount.",
+              width: 657,
+              height: 171,
+            },
+            caption: "Revenue, margin, and discount by branch, sorted by gross margin.",
+          },
+          {
+            type: "paragraph",
+            text: "Mesa had about the same revenue as Tempe, but a 30.3% gross margin compared with about 35% at the other branches. The cause was pricing, not cost: Mesa discounted 15.4% off list, while the other five averaged 9.6%. At the other branches' rate, Mesa would have given away about $79,000 less in discounts.",
+          },
+          {
+            type: "paragraph",
+            text: "Breaking margin out by discount level showed the same pattern across branches: each additional 5 points of discount cost roughly 3 to 4 points of margin. That makes discount approval the lever to look at first.",
+          },
+        ],
+      },
+      {
+        id: "next",
+        heading: "What's next",
+        blocks: [
+          {
+            type: "list",
+            items: [
+              "Return rate by channel and product.",
+              "Revenue and margin against monthly targets by branch.",
+              "Inventory measures that use only the latest snapshot in each period, plus items below reorder point.",
+              "Month-over-month, year-to-date, and year-over-year comparisons.",
+              "Report pages: executive overview, sales and margin, products, inventory health, and branch performance.",
+            ],
+          },
+          {
+            type: "placeholder",
+            text: "Add the report page screenshots (1600×1000) to /public/images/projects/sales-margin/ and use the executive overview as the cover.",
+          },
+        ],
+      },
+      {
+        id: "learned",
+        heading: "What I learned so far",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Check what a missing value means before filling it. Defaulting the missing discounts to zero would have understated discounting in exactly the analysis this project is about. A target row count also made the cleaning testable: I knew the work was right when the table landed on 26,091.",
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 export const caseStudies = projects.filter((p) => p.kind === "case-study");

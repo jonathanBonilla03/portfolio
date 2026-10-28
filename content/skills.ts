@@ -5,12 +5,13 @@ const makmex = { label: "MakMex", href: "/projects/makmex-data-system" };
 const pricing = { label: "Predictive Pricing", href: "/projects/predictive-pricing" };
 const bonaro = { label: "Bonaro Tech", href: "/projects/bonaro-tech-platform" };
 const aloy = { label: "ALOY", href: "/#experience" };
+const salesMargin = { label: "Sales & Margin", href: "/projects/sales-inventory-margin" };
 
 export const skillGroups: SkillGroup[] = [
   {
     title: "Data & Analytics",
     skills: ["SQL", "Python", "Excel", "Power BI", "Tableau", "pandas"],
-    usedIn: [fireEms, pricing, makmex],
+    usedIn: [fireEms, pricing, makmex, salesMargin],
   },
   {
     title: "Data Systems",
