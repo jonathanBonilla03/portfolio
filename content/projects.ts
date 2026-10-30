@@ -767,7 +767,7 @@ export const projects: Project[] = [
     title: "Sales, Inventory & Margin Dashboard",
     label: "INDEPENDENT · IN PROGRESS · 2026",
     summary:
-      "Cleaned six raw tables in Power Query, built a star-schema model with DAX measures, and traced one branch's weak margin to its discounting.",
+      "Cleaned six raw tables in Power Query, built a star-schema model with DAX measures, and traced weak margin, high returns, and missed targets to their causes.",
     role: "BI analyst",
     period: "2026",
     type: "Independent Power BI project, synthetic data",
@@ -777,7 +777,7 @@ export const projects: Project[] = [
       problem: "A multi-branch distributor needs to see where revenue and margin come from, and why one branch earns less.",
       role: "BI analyst, independent project on synthetic data.",
       solution: "Power Query cleaning with a staging query and an exceptions check, a star-schema model, and DAX measures for revenue, margin, and discounts.",
-      impact: "Found that the lowest-margin branch discounted 15.4% off list, compared with 9.6% at the other five.",
+      impact: "Found three separate problems: one branch's margin lost to discounting, an online returns rate about 2.5× the other channels, and one branch below its revenue target in 19 of 21 months.",
     },
     focus: "Data preparation, star-schema modeling, and margin analysis in Power BI",
     cover: {
@@ -804,7 +804,7 @@ export const projects: Project[] = [
           {
             type: "callout",
             title: "In progress",
-            text: "The data preparation, model, and core measures are finished and validated. Return, target, inventory, and time-based measures come next, followed by the report pages.",
+            text: "The data preparation, model, and sales, discount, return, and target measures are finished and validated. Inventory and time-based measures come next, followed by the report pages.",
           },
         ],
       },
@@ -914,6 +914,8 @@ export const projects: Project[] = [
               ["Average Order Value", "Revenue ÷ orders"],
               ["Discount %", "1 − revenue ÷ revenue at list price, weighted by sale size"],
               ["Discount $", "Revenue at list price − actual revenue"],
+              ["Returned Units / Return Rate", "Units sold with Returned = Y (CALCULATE), divided by all units sold"],
+              ["Revenue Target / % to Target", "Monthly targets up to the last sale date only, and revenue divided by that"],
             ],
           },
           {
@@ -924,7 +926,7 @@ export const projects: Project[] = [
       },
       {
         id: "finding",
-        heading: "First finding",
+        heading: "Finding 1: margin lost to discounting",
         blocks: [
           {
             type: "figure",
@@ -947,14 +949,60 @@ export const projects: Project[] = [
         ],
       },
       {
+        id: "returns",
+        heading: "Finding 2: two separate returns problems",
+        blocks: [
+          {
+            type: "figure",
+            image: {
+              src: "/images/projects/sales-margin/returns-by-channel.webp",
+              alt: "Power BI table of returns by channel: E-Commerce returned 7.2% of units, compared with 2.3% to 2.9% for Counter, Field Sales, and Inside Sales. Total return rate 3.5%.",
+              width: 326,
+              height: 120,
+            },
+            caption: "Return rate by channel, measured in units rather than sales lines.",
+          },
+          {
+            type: "paragraph",
+            text: "I measured return rate by units, not by line count, so a 50-unit return weighs more than a 1-unit one. E-Commerce returned 7.2% of units, compared with 2.3% to 2.9% in the other channels. It sells the fewest units but accounts for about 38% of returned revenue.",
+          },
+          {
+            type: "paragraph",
+            text: "Thermostats and power tools also returned at about 8.4%, against roughly 3% for most products. To check whether one explained the other, I filtered by channel: those two products returned at 8% to 10% in every channel, and E-Commerce still returned about 7% of everything else. So there are two issues, a product fit or quality problem and an online ordering problem, and each needs a different fix.",
+          },
+        ],
+      },
+      {
+        id: "targets",
+        heading: "Finding 3: a steady miss against target",
+        blocks: [
+          {
+            type: "figure",
+            image: {
+              src: "/images/projects/sales-margin/target-matrix.webp",
+              alt: "Power BI matrix of percent to revenue target by branch and month, January 2025 to September 2026, shaded red below 100% and blue above. Tucson's row is red in nearly every month and totals 88.9%; other branches total 97.8% to 104.8%.",
+              width: 1065,
+              height: 154,
+            },
+            caption: "Percent to revenue target by branch and month. White is on target, red is below, blue is above.",
+          },
+          {
+            type: "paragraph",
+            text: "My first target measure showed the company at 87% of target. That was wrong: the targets file runs through December 2026, but sales end in September, so three future months of targets had no sales against them. I changed the measure to count targets only up to the last sale date, which put the company at 98.9%.",
+          },
+          {
+            type: "paragraph",
+            text: "With that fixed, Tucson stood out at 88.9% of target, below 100% in 19 of 21 months, while its margin was healthy. Mesa showed the opposite: 104.8% of target with the weakest margin. Hitting a revenue target doesn't mean a branch is healthy, and Tucson's shortfall could come from the target being set too high as much as from the branch itself.",
+          },
+        ],
+      },
+      {
         id: "next",
         heading: "What's next",
         blocks: [
           {
             type: "list",
             items: [
-              "Return rate by channel and product.",
-              "Revenue and margin against monthly targets by branch.",
               "Inventory measures that use only the latest snapshot in each period, plus items below reorder point.",
               "Month-over-month, year-to-date, and year-over-year comparisons.",
               "Report pages: executive overview, sales and margin, products, inventory health, and branch performance.",
@@ -972,7 +1020,7 @@ export const projects: Project[] = [
         blocks: [
           {
             type: "paragraph",
-            text: "Check what a missing value means before filling it. Defaulting the missing discounts to zero would have understated discounting in exactly the analysis this project is about. A target row count also made the cleaning testable: I knew the work was right when the table landed on 26,091.",
+            text: "Check what a missing value means before filling it. Defaulting the missing discounts to zero would have understated discounting in exactly the analysis this project is about. A target row count also made the cleaning testable: I knew the work was right when the table landed on 26,091. The target measure taught the same lesson from the other side: compare actuals only against periods that have actually happened.",
           },
         ],
       },
