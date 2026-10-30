@@ -981,8 +981,8 @@ export const projects: Project[] = [
             image: {
               src: "/images/projects/sales-margin/target-matrix.webp",
               alt: "Power BI matrix of percent to revenue target by branch and month, January 2025 to September 2026, shaded red below 100% and blue above. Tucson's row is red in nearly every month and totals 88.9%; other branches total 97.8% to 104.8%.",
-              width: 1065,
-              height: 154,
+              width: 1730,
+              height: 250,
             },
             caption: "Percent to revenue target by branch and month. White is on target, red is below, blue is above.",
           },
