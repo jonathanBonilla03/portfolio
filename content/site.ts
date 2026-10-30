@@ -20,11 +20,6 @@ export const site = {
     { value: "3,355 → 492", label: "overstated kit availability found and fixed", href: "/projects/makmex-data-system#audit" },
     { value: "~82%", label: "lower forecast error than baseline (Random Forest)", href: "/projects/predictive-pricing" },
   ],
-  quickScan: [
-    { icon: "location", label: "Phoenix, AZ" },
-    { icon: "work", label: "Open to on-site, hybrid, or remote" },
-    { icon: "language", label: "English / Spanish" },
-  ],
   nav: [
     { label: "Work", href: "/#work" },
     { label: "About", href: "/#about" },
